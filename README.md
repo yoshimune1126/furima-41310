@@ -29,11 +29,14 @@ Things you may want to cover:
 | Column             | Type                | Options                   |
 |--------------------|---------------------|---------------------------|
 | user_name          | string              | null: false               |
-| password           | string              | null: false               |
+| encrypted_password | string              | null: false               |
 | email              | string              | null: false, unique: true |
 | date_of_birth      | date                | null: false               |
-| full_name          | string              | null: false               |
-| full_name_kana     | string              | null: false               |
+| last_name          | string              | null: false               |
+| first_name         | string              | null: false               |
+| last_name_kana     | string              | null: false               |
+| first_name_kana    | string              | null: false               |
+
 
 ### Association
 * has_many :products
@@ -44,21 +47,20 @@ Things you may want to cover:
 
 ## products
 
-| Column                         | Type                | Options                   |
-|--------------------------------|---------------------|---------------------------|
-| product_image                  | string              | null: false               |
-| product_name                   | string              | null: false               |
-| product_description            | string              | null: false               |
-| price                          | integer             | null: false               |
-| category_id                    | string              | null: false               |
-| condition                      | string              | null: false               |
-| shipping_fee_responsibility    | integer             | null: false               |
-| shipping_origin_area           | string              | null: false               |
-| shipping_duration              | date                | null: false               |
+| Column                         | Type                | Options                           |
+|--------------------------------|---------------------|-----------------------------------|
+| product_name                   | string              | null: false                       |
+| product_description            | text                | null: false                       |
+| price                          | integer             | null: false                       |
+| category_id                    | integer             | null: false                       |
+| condition                      | integer             | null: false                       |
+| shipping_fee_responsibility    | integer             | null: false, foreign_key: true    |
+| prefecture_id                  | integer             | null: false, foreign_key: true    |
+| shipping_duration              | integer             | null: false, foreign_key: true    |
 
 ### Association
-* belongs_to :users
-* has_one : purchase_records
+* belongs_to :user
+* has_one : purchase_record
 
 
 
@@ -66,14 +68,14 @@ Things you may want to cover:
 
 ## purchase_records
 
-| Column                         | Type                | Options                          |
-|--------------------------------|---------------------|----------------------------------|
-| user_id                        | references          | null: false, foreign_key: true   |
-| product_id                     | references          | null: false, foreign_key: true   |
-| shipping_address_id            | references          | null: false, foreign_key: true   |
+| Column                      | Type                | Options                          |
+|-----------------------------|---------------------|----------------------------------|
+| user                        | references          | null: false                      |
+| product                     | references          | null: false                      |
+| shipping_address            | references          | null: false                      |
 
 ### Association
-* belongs_to :users
+* belongs_to :user
 * has_one : shipping_address
 
 
@@ -87,11 +89,14 @@ Things you may want to cover:
 
 | Column                         | Type                | Options                   |
 |--------------------------------|---------------------|---------------------------|
-| phone_number                   | integer             | null: false               |
-| postal_code                    | integer             | null: false               |
-| prefecture                     | string              | null: false               |
+| phone_number                   | string              | null: false               |
+| postal_code                    | string              | null: false               |
+| prefecture_id                  | string              | null: false               |
 | city                           | string              | null: false               |
-| address1                       | integer             | null: false               |
+| address1                       | string              | null: false               |
+| building_name                  | string              | null: false               |
+
+
 
 ### Association
-* belongs_to : purchase_records
+* belongs_to : purchase_record
