@@ -39,8 +39,8 @@ Things you may want to cover:
 
 
 ### Association
-* has_many :products
-* has_many :purchase_records
+* has_many products
+* has_many purchase_records
 
 
 
@@ -49,18 +49,19 @@ Things you may want to cover:
 
 | Column                         | Type                | Options                           |
 |--------------------------------|---------------------|-----------------------------------|
+| user_id                        | integer             | null: false                       |
 | product_name                   | string              | null: false                       |
 | product_description            | text                | null: false                       |
 | price                          | integer             | null: false                       |
 | category_id                    | integer             | null: false                       |
-| condition                      | integer             | null: false                       |
-| shipping_fee_responsibility    | integer             | null: false, foreign_key: true    |
-| prefecture_id                  | integer             | null: false, foreign_key: true    |
-| shipping_duration              | integer             | null: false, foreign_key: true    |
+| condition_id                   | integer             | null: false                       |
+| shipping_fee_responsibility_id | integer             | null: false                       |
+| prefecture_id                  | integer             | null: false                       |
+| shipping_duration_id           | integer             | null: false                       |
 
 ### Association
-* belongs_to :user
-* has_one : purchase_record
+* belongs_to user
+* has_one purchase_record
 
 
 
@@ -70,13 +71,12 @@ Things you may want to cover:
 
 | Column                      | Type                | Options                          |
 |-----------------------------|---------------------|----------------------------------|
-| user                        | references          | null: false                      |
-| product                     | references          | null: false                      |
-| shipping_address            | references          | null: false                      |
+| user                        | references          | null: false,foreign_key: true    |
+| product                     | references          | null: false,foreign_key: true    |
 
 ### Association
-* belongs_to :user
-* has_one : shipping_address
+* belongs_to user
+* has_one shipping_address
 
 
 
@@ -87,16 +87,17 @@ Things you may want to cover:
 
 ## shipping_address
 
-| Column                         | Type                | Options                   |
-|--------------------------------|---------------------|---------------------------|
-| phone_number                   | string              | null: false               |
-| postal_code                    | string              | null: false               |
-| prefecture_id                  | string              | null: false               |
-| city                           | string              | null: false               |
-| address1                       | string              | null: false               |
-| building_name                  | string              | null: false               |
+| Column                         | Type                | Options                                    |
+|--------------------------------|---------------------|--------------------------------------------|
+| phone_number                   | string              | null: false                                |
+| postal_code                    | string              | null: false                                |
+| prefecture_id                  | integer             | null: false                                |
+| city                           | string              | null: false                                |
+| address1                       | string              | null: false                                |
+| building_name                  | string              |                                            |
+| purchase_record                | string              | null: false                                |
 
 
 
 ### Association
-* belongs_to : purchase_record
+* belongs_to purchase_record
