@@ -76,7 +76,7 @@ Things you may want to cover:
 
 ### Association
 * belongs_to :user
-* belongs_to :products
+* belongs_to :product
 * has_one :shipping_address
 
 
