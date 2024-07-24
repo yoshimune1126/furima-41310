@@ -76,6 +76,7 @@ Things you may want to cover:
 
 ### Association
 * belongs_to :user
+* belongs_to :products
 * has_one :shipping_address
 
 
@@ -93,9 +94,9 @@ Things you may want to cover:
 | postal_code                    | string              | null: false                                |
 | prefecture_id                  | integer             | null: false                                |
 | city                           | string              | null: false                                |
-| address1                       | string              | null: false                                |
+| address                        | string              | null: false                                |
 | building_name                  | string              |                                            |
-| purchase_record                | string              | null: false,foreign_key: true              |
+| purchase_record                | references          | null: false,foreign_key: true              |
 
 
 
