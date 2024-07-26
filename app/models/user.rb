@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :date_of_birth
 
   #この下だけひらがな、カタカナ、漢字の指定
-  with_options format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/ } do
+  with_options format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ } do
   validates :last_name
   validates :first_name
   end
