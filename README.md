@@ -39,19 +39,19 @@ Things you may want to cover:
 
 
 ### Association
-* has_many :products
+* has_many :items
 * has_many :purchase_records
 
 
 
 
-## products
+## items
 
 | Column                         | Type                | Options                           |
 |--------------------------------|---------------------|-----------------------------------|
 | user                           | references          | null: false,foreign_key: true     |
-| product_name                   | string              | null: false                       |
-| product_description            | text                | null: false                       |
+| item_name                      | string              | null: false                       |
+| item_description               | text                | null: false                       |
 | price                          | integer             | null: false                       |
 | category_id                    | integer             | null: false                       |
 | condition_id                   | integer             | null: false                       |
@@ -72,11 +72,11 @@ Things you may want to cover:
 | Column                      | Type                | Options                          |
 |-----------------------------|---------------------|----------------------------------|
 | user                        | references          | null: false,foreign_key: true    |
-| product                     | references          | null: false,foreign_key: true    |
+| item                        | references          | null: false,foreign_key: true    |
 
 ### Association
 * belongs_to :user
-* belongs_to :product
+* belongs_to :item
 * has_one :shipping_address
 
 
