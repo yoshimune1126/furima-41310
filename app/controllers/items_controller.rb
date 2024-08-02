@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
 
 
   def show
-    @item = Item.find(params[:id])
+    
   end
 
 
@@ -41,11 +41,6 @@ class ItemsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
-
-
-
-
-
 
   
 
