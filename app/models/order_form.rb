@@ -1,6 +1,6 @@
 class OrderForm
   include ActiveModel::Model
-  attr_accessor :phone_number, :postal_code, :address, :city, :building_name, :prefecture_id, :user_id, :item_id, :token, :order_id
+  attr_accessor :phone_number, :postal_code, :address, :city, :building_name, :prefecture_id, :user_id, :item_id, :token
 
   with_options presence: true do
     validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'is invalid. Input only number' }
