@@ -1,0 +1,17 @@
+FactoryBot.define do
+  factory :order_form do
+    postal_code {'123-4567'}
+    prefecture_id {'2'}
+    city {"横浜市"}
+    address {'111'}
+    building_name {''}
+    phone_number {'09011231123'}
+    order_id {'1'}
+    token { 'your_valid_token' }
+
+    user_id {'2'}
+    item_id {'9'}
+    
+    
+  end
+end
