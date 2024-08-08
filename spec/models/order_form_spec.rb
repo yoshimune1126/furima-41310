@@ -10,6 +10,11 @@ RSpec.describe OrderForm, type: :model do
       it '全ての値が正しく入力されていれば購入できる' do
         expect(@order_form).to be_valid
       end
+
+      it '建物名が空でも購入できる' do
+        @order_form.building_name = ''
+        expect(@order_form).to be_valid
+      end
     end
 
     context '商品購入できない場合' do
@@ -17,6 +22,12 @@ RSpec.describe OrderForm, type: :model do
         @order_form.postal_code = ''
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Postal code can't be blank")
+      end
+
+      it '郵便番号がハイフンなし（数字のみ）では登録できない' do
+        @order_form.postal_code = '1234567' 
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
 
       it '郵便番号が半角文字列以外では購入できない（文字を含む）' do

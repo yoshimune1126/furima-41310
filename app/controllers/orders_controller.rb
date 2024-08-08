@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user! 
   before_action :set_item, only: [:index, :create]
-  before_action :redirect_if_seller, only: [:new, :index, :create]  
+  before_action :redirect_if_seller, only: [:index, :create]  
   before_action :redirect_if_sold, only: [:index, :create]
 
 
@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order_form).permit(:postal_code, :prefecture_id, :city, :address, :building_name, :phone_number, :price, :token).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:order_form).permit(:postal_code, :prefecture_id, :city, :address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def set_item
@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
   end
 
   def redirect_if_sold
-    if @item.sold? && @item.user != current_user
+    if @item.sold? 
       redirect_to root_path, alert: '売却済みの商品は購入できません。'
     end
   end

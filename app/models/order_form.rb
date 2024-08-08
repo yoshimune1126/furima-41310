@@ -2,19 +2,18 @@ class OrderForm
   include ActiveModel::Model
   attr_accessor :phone_number, :postal_code, :address, :city, :building_name, :prefecture_id, :user_id, :item_id, :token, :order_id
 
+  with_options presence: true do
+    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'is invalid. Input only number' }
+    validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'is invalid. Include hyphen(-)' }
+    validates :address
+    validates :city
+    validates :token
+    validates :user_id
+    validates :item_id
+  end
+
+
   validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :phone_number, presence: true, format: { with: /\A\d{10,11}\z/, message: 'is invalid. Input only number' }
-  validates :postal_code, presence: true, format: { with: /\A\d{3}-\d{4}\z/, message: 'is invalid. Include hyphen(-)' }
-
-  validates :address, presence: true
-  validates :city, presence: true
-  validates :token, presence: true
-
-
-  validates :user_id, presence: true
-  validates :item_id, presence: true
-
-
 
 
   def save
