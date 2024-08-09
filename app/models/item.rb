@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+  has_one :order
   has_one_attached :image
   belongs_to :user
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -19,9 +20,6 @@ class Item < ApplicationRecord
 
 
 
-
-
-
   #空の投稿を保存できないようにする
   validates :image, presence: true
   validates :item_name, presence: true
@@ -32,9 +30,6 @@ class Item < ApplicationRecord
   validates :prefecture_id, presence: true
   validates :shipping_duration_id, presence: true
   validates :shipping_fee_responsibility_id, presence: true
-  
-
-
 
 
   #ジャンルの選択が「---」の時は保存できないようにする
@@ -43,4 +38,12 @@ class Item < ApplicationRecord
   validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :shipping_duration_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :shipping_fee_responsibility_id, numericality: { other_than: 1, message: "can't be blank" }
+
+
+  def sold?
+    order.present?
+  end
+
+
+
 end

@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
   before_action :set_item, only: [:edit, :update, :show, :destroy]
   before_action :check_item_owner, only: [:edit, :update]
+  before_action :redirect_if_sold, only: [:edit]
 
 
   def index
@@ -25,7 +26,7 @@ class ItemsController < ApplicationController
 
 
   def show
-    
+
   end
 
 
@@ -58,6 +59,12 @@ class ItemsController < ApplicationController
 
   
   private
+
+  def redirect_if_sold
+    if @item.sold?
+      redirect_to root_path, alert: '売却済みの商品は編集できません。'
+    end
+  end
 
   def set_item
     @item = Item.find(params[:id])
